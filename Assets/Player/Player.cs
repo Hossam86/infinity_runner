@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,7 +12,9 @@ public class Player : MonoBehaviour
     Vector3 destination;
 
     [SerializeField] Transform[] lane_transforms;
-    [SerializeField] float move_speed = 2.0f;
+    [SerializeField] float move_speed = 20.0f;
+    [SerializeField] float jump_height=2.5f;
+
     int current_lane_index;
 
     private void OnEnable()
@@ -31,7 +34,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        input.GamePlay.Move.performed += Move_performed;
+        input.GamePlay.Move.performed += MovePerformed;
+        input.GamePlay.Jump.performed += JumpPerformed;
 
         for (int i = 0; i < lane_transforms.Length; i++)
         {
@@ -44,7 +48,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Move_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void JumpPerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+      
+        Rigidbody rigidbody= GetComponent<Rigidbody>();
+        if(rigidbody != null )
+        {
+            float jump_vel = MathF.Sqrt(Physics.gravity.magnitude * jump_height * 2); 
+            rigidbody.AddForce(new Vector3(0.0f, jump_vel, 0.0f), ForceMode.VelocityChange);   
+        }
+    }
+
+    private void MovePerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         float input_value= obj.ReadValue<float>();
         
@@ -69,6 +84,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * move_speed); ;
+        float tramsform_x = Mathf.Lerp(transform.position.x, destination.x, Time.deltaTime * move_speed);
+        transform.position = new Vector3(tramsform_x, transform.position.y, transform.position.z);
+
     }
 }
