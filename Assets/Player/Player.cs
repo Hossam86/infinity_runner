@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
+        if (input == null)
+        {
+            input = new PlayerInput();
+        }
         input.Enable();
     }
 
@@ -20,17 +24,13 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (input == null)
-        {
-            input =new PlayerInput();
-        }
-
         input.GamePlay.Move.performed += Move_performed;
     }
 
     private void Move_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        throw new System.NotImplementedException();
+        float input_value= obj.ReadValue<float>();
+        Debug.Log($"Move Action Performed with value {input_value}.");
     }
 
     // Update is called once per frame
