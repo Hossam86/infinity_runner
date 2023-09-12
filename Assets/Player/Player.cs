@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     Vector3 destination;
 
     [SerializeField] Transform[] lane_transforms;
+    [SerializeField] float move_speed = 2.0f;
     int current_lane_index;
 
     private void OnEnable()
@@ -68,6 +69,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = destination;
+        transform.position = Vector3.Lerp(transform.position, destination, Time.deltaTime * move_speed); ;
     }
 }
