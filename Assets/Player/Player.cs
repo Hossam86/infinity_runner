@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] Transform[] lane_transforms;
     [SerializeField] float MoveSpeed = 20.0f;
     [SerializeField] float JumpingHeight=2.5f;
-    [SerializeField] Transform GroundCheckTransForm;
+    [SerializeField] Transform GroundCheckTransform;
     [SerializeField][Range(0, 1)] float GroundCheckRadius = 0.2f;
     [SerializeField] LayerMask GroundCheckMask;
 
@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
 
     bool IsOnGround()
     {
-       return Physics.CheckSphere(GroundCheckTransForm.position, GroundCheckRadius, GroundCheckMask);
+       return Physics.CheckSphere(GroundCheckTransform.position, GroundCheckRadius, GroundCheckMask);
 
     }
 }
