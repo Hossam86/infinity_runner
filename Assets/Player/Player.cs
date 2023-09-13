@@ -12,8 +12,11 @@ public class Player : MonoBehaviour
     Vector3 destination;
 
     [SerializeField] Transform[] lane_transforms;
-    [SerializeField] float move_speed = 20.0f;
-    [SerializeField] float jump_height=2.5f;
+    [SerializeField] float MoveSpeed = 20.0f;
+    [SerializeField] float JumpingHeight=2.5f;
+    [SerializeField] Transform GroundCheckTransForm;
+    [SerializeField][Range(0, 1)] float GroundCheckRadius = 0.2f;
+    [SerializeField] LayerMask GroundCheckMask;
 
     int current_lane_index;
 
@@ -54,7 +57,7 @@ public class Player : MonoBehaviour
         Rigidbody rigidbody= GetComponent<Rigidbody>();
         if(rigidbody != null )
         {
-            float jump_vel = MathF.Sqrt(Physics.gravity.magnitude * jump_height * 2); 
+            float jump_vel = MathF.Sqrt(Physics.gravity.magnitude * JumpingHeight * 2); 
             rigidbody.AddForce(new Vector3(0.0f, jump_vel, 0.0f), ForceMode.VelocityChange);   
         }
     }
@@ -63,7 +66,7 @@ public class Player : MonoBehaviour
     {
         float input_value= obj.ReadValue<float>();
         
-        if (input_value < 0f) { MoveRight(); }
+        if (input_value < 0.0f) { MoveRight(); }
         else { MoveLeft(); }
     }
 
@@ -84,8 +87,21 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float tramsform_x = Mathf.Lerp(transform.position.x, destination.x, Time.deltaTime * move_speed);
+        if (!IsOnGround())
+        {
+            Debug.Log("We are not on the ground");
+        }
+        else
+        {
+            Debug.Log("We are on the ground!");
+        }
+        float tramsform_x = Mathf.Lerp(transform.position.x, destination.x, Time.deltaTime * MoveSpeed);
         transform.position = new Vector3(tramsform_x, transform.position.y, transform.position.z);
+    }
+
+    bool IsOnGround()
+    {
+       return Physics.CheckSphere(GroundCheckTransForm.position, GroundCheckRadius, GroundCheckMask);
 
     }
 }
