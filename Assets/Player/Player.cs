@@ -20,6 +20,10 @@ public class Player : MonoBehaviour
 
     int current_lane_index;
 
+    // refernce for the animator 
+    Animator animator;
+
+
     private void OnEnable()
     {
         if (input == null)
@@ -49,16 +53,20 @@ public class Player : MonoBehaviour
                 current_lane_index = i;
             }
         }
+
+        animator = GetComponent<Animator>();
     }
 
     private void JumpPerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-      
-        Rigidbody rigidbody= GetComponent<Rigidbody>();
-        if(rigidbody != null )
+        if (IsOnGround())
         {
-            float jump_vel = MathF.Sqrt(Physics.gravity.magnitude * JumpingHeight * 2); 
-            rigidbody.AddForce(new Vector3(0.0f, jump_vel, 0.0f), ForceMode.VelocityChange);   
+            Rigidbody rigidbody = GetComponent<Rigidbody>();
+            if (rigidbody != null)
+            {
+                float jump_vel = MathF.Sqrt(Physics.gravity.magnitude * JumpingHeight * 2);
+                rigidbody.AddForce(new Vector3(0.0f, jump_vel, 0.0f), ForceMode.VelocityChange);
+            }
         }
     }
 
@@ -90,10 +98,12 @@ public class Player : MonoBehaviour
         if (!IsOnGround())
         {
             Debug.Log("We are not on the ground");
+            animator.SetBool("isOnGround", false);
         }
         else
         {
             Debug.Log("We are on the ground!");
+            animator.SetBool("isOnGround", true);
         }
         float tramsform_x = Mathf.Lerp(transform.position.x, destination.x, Time.deltaTime * MoveSpeed);
         transform.position = new Vector3(tramsform_x, transform.position.y, transform.position.z);

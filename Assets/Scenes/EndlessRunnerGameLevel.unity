@@ -265,7 +265,7 @@ MonoBehaviour:
   - {fileID: 1995579242}
   MoveSpeed: 20
   JumpingHeight: 2.5
-  GroundCheckTransForm: {fileID: 413811054}
+  GroundCheckTransform: {fileID: 413811054}
   GroundCheckRadius: 0.2
   GroundCheckMask:
     serializedVersion: 2
@@ -305,6 +305,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400078, guid: 461413943bab6ef40aa2a33f18380180, type: 3}
   m_PrefabInstance: {fileID: 764411585}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &764411592
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764411586}
+  m_Enabled: 0
+  m_Avatar: {fileID: 9000000, guid: 45d480461bbdc704587e117329ce8e69, type: 3}
+  m_Controller: {fileID: 9100000, guid: dc40099920d50a14986e2f8a88846dea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &815662739
 GameObject:
   m_ObjectHideFlags: 0
