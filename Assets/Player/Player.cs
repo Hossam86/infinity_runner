@@ -48,7 +48,6 @@ public class Player : MonoBehaviour
         {
             if (lane_transforms[i].position == transform.position)
                 {
-
                 destination= lane_transforms[i].position;
                 current_lane_index = i;
             }
