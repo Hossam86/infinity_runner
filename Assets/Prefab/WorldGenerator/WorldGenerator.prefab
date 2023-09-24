@@ -79,6 +79,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingPoint: {fileID: 9035938242560547340}
   EndPoint: {fileID: 6377040833011534080}
+  RoadBlocks:
+  - {fileID: 5090635064468501295, guid: 8490d199b91ab344aa482eddb64c1d67, type: 3}
+  - {fileID: 8667423236272598441, guid: f31b3985cb2631e47b23e6a0207e0458, type: 3}
 --- !u!1 &8863972303845961159
 GameObject:
   m_ObjectHideFlags: 0
