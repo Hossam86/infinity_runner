@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
 {
+    [SerializeField] float EvnMoveSpeed = 4f;
     [SerializeField] Transform StartingPoint;
     [SerializeField] Transform EndPoint;
 
@@ -23,12 +24,17 @@ public class WorldGenerator : MonoBehaviour
             GameObject newBlock = Instantiate(pickedBlock);
             newBlock.transform.position = nextBlockPostion;
             float blockLength = newBlock.GetComponent<Renderer>().bounds.size.z;
-            nextBlockPostion += (EndPoint.position - StartingPoint.position).normalized * blockLength;
+
+            Vector3 incerementDir = (EndPoint.position - StartingPoint.position).normalized;
+
+            nextBlockPostion += incerementDir * blockLength;
 
 
             MovementComp moveComp= newBlock.GetComponent<MovementComp>();
-            Vector3 incerementDir= (-EndPoint.position +StartingPoint.position).normalized;
-            if (moveComp != null ) { moveComp.setMoveDir(incerementDir); }
+            if (moveComp != null ) {
+                moveComp.setMoveDir(incerementDir);
+                moveComp.setMovespeed(EvnMoveSpeed);
+            }
         }
        
     }

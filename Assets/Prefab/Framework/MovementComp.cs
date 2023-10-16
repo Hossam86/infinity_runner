@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class MovementComp : MonoBehaviour
 
 {
 
-    [SerializeField] float MoveSpeed = 20f;
+    [SerializeField] float MoveSpeed = 5.0f;
     [SerializeField] Vector3 MoveDir = Vector3.forward;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,11 @@ public class MovementComp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position+= MoveDir * MoveSpeed * Time.deltaTime;
+        transform.position+= -MoveDir * MoveSpeed * Time.deltaTime;
+    }
+
+    internal void setMovespeed(float envMoveSpeed)
+    {
+        MoveSpeed =envMoveSpeed ; 
     }
 }
