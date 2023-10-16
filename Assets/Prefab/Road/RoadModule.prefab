@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5803541303121299492}
   - component: {fileID: 5732154508432335929}
   - component: {fileID: 195568281804552051}
+  - component: {fileID: -734481038150298242}
   m_Layer: 6
   m_Name: RoadModule
   m_TagString: Untagged
@@ -98,3 +99,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8728854048086142887, guid: 46b61366d3db699458c4c814c59e45b5, type: 3}
+--- !u!114 &-734481038150298242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7163251843661723907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c47a92a577c554e83f554a0d5014fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 20
+  MoveDir: {x: 0, y: 0, z: 1}

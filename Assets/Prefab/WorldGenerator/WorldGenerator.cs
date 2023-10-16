@@ -24,6 +24,11 @@ public class WorldGenerator : MonoBehaviour
             newBlock.transform.position = nextBlockPostion;
             float blockLength = newBlock.GetComponent<Renderer>().bounds.size.z;
             nextBlockPostion += (EndPoint.position - StartingPoint.position).normalized * blockLength;
+
+
+            MovementComp moveComp= newBlock.GetComponent<MovementComp>();
+            Vector3 incerementDir= (-EndPoint.position +StartingPoint.position).normalized;
+            if (moveComp != null ) { moveComp.setMoveDir(incerementDir); }
         }
        
     }
